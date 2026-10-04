@@ -1,0 +1,65 @@
+{
+  "app_type": "hybrid_fullstack",
+  "design_context": "Marketing & E-commerce Prompt Storefront",
+  "emotional_tone": "Electric Cyberpunk / High-Performance Tech & Creative",
+  "typography": {
+    "headline_font": "Unbounded, Space Grotesk, sans-serif",
+    "body_font": "Inter, system-ui, sans-serif",
+    "weights": {
+      "light": "font-light",
+      "regular": "font-normal",
+      "bold": "font-bold",
+      "black": "font-black"
+    },
+    "hierarchy": {
+      "h1": "text-4xl sm:text-5xl lg:text-6xl tracking-tight font-black",
+      "h2": "text-2xl sm:text-3xl lg:text-4xl tracking-tight font-bold",
+      "h3": "text-xl sm:text-2xl font-bold",
+      "body": "text-base leading-relaxed"
+    }
+  },
+  "colors": {
+    "archetype": "Electric & Neon with Organic Warmth",
+    "palette": {
+      "background": "#090A0F",
+      "surface": "#131620",
+      "surface_border": "#222738",
+      "primary": "#6366F1",
+      "accent": "#EC4899",
+      "cyan_glow": "#06B6D4",
+      "text_main": "#F8FAFC",
+      "text_muted": "#94A3B8"
+    }
+  },
+  "visual_enhancers": {
+    "glassmorphism": "backdrop-blur-xl bg-black/60 border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.37)]",
+    "tracing_beam": "relative before:absolute before:inset-0 before:p-[1px] before:bg-gradient-to-r before:from-indigo-500 before:via-pink-500 before:to-cyan-400 before:rounded-xl before:-z-10",
+    "neon_glow": "shadow-[0_0_30px_rgba(99,102,241,0.25)]"
+  },
+  "component_path": "/app/frontend/src/components/",
+  "instructions_to_main_agent": "Build a stunning prompt store with Razorpay ₹299 checkout flow, bundle listing, creator admin panel to add new bundles with zip upload, search/filter, and instant digital bundle download upon successful payment verification.",
+  "image_urls": [
+    {
+      "category": "Hero Cyberpunk",
+      "url": "https://images.unsplash.com/photo-1787105577115-a42207979fcb?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODl8MHwxfHNlYXJjaHwxfHxBSSUyMGFydCUyMHByb21wdCUyMGZ1dHVyaXN0aWMlMjBuZW9uJTIwY3liZXJwdW5rfGVufDB8fHx8MTc5MTEwNjg3OHww&ixlib=rb-4.1.0&q=85",
+      "description": "Cyborg woman in neon blue and purple light"
+    },
+    {
+      "category": "Workspace",
+      "url": "https://images.unsplash.com/photo-1621111848501-8d3634f82336?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NTY2NzV8MHwxfHNlYXJjaHwzfHxkaWdpdGFsJTIwZGVzaWduJTIwY3JlYXRpdmUlMjB3b3Jrc3BhY2UlMjBtaW5pbWFsaXN0fGVufDB8fHx8MTc5MTEwNjg3OHww&ixlib=rb-4.1.0&q=85",
+      "description": "Minimalist digital workspace setup"
+    },
+    {
+      "category": "Futuristic Robot",
+      "url": "https://images.unsplash.com/photo-1760931969401-9bd6ee902798?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODl8MHwxfHNlYXJjaHwyfHxBSSUyMGFydCUyMHByb21wdCUyMGZ1dHVyaXN0aWMlMjBuZW9uJTIwY3liZXJwdW5rfGVufDB8fHx8MTc5MTEwNjg3OHww&ixlib=rb-4.1.0&q=85",
+      "description": "Robot head with glowing red triangle"
+    }
+  ],
+  "accessibility": {
+    "apca_contrast_checked": true,
+    "focus_states": "focus:ring-2 focus:ring-indigo-500 focus:outline-none"
+  },
+  "testing_attributes": {
+    "requirement": "All interactive and key informational elements MUST include a data-testid attribute in kebab-case."
+  }
+}
