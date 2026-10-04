@@ -4,10 +4,9 @@
 Build a website to sell prompt bundles online for ₹299 each, with Razorpay payments, the ability to add more bundles later, and delivery of the uploaded `bundels.zip` archive to customers after successful payment. Latest explicit requirement: complete Razorpay Standard Web Checkout with Test credentials — backend create-order endpoint, frontend Razorpay modal, backend HMAC-SHA256 signature verification, correct error handling, and no secret on the frontend.
 
 ## Architecture
-- Frontend: React (CRA/craco), Tailwind + custom CSS design system, framer-motion (scroll reveals, micro-interactions), Lenis smooth scrolling, sonner toasts. Public Razorpay key only via `REACT_APP_RAZORPAY_KEY_ID`.
-- Backend: FastAPI (`/api` prefix), Motor (async MongoDB), Razorpay Python SDK.
-- DB: MongoDB via `MONGO_URL` / `DB_NAME`. Collections: `bundles`, `orders`, `downloads`.
-- Digital fulfilment: `/app/backend/bundles.zip` (built from `/app/backend/bundles/`, sourced from the user's uploaded `bundels.zip`) served via `FileResponse` only with a valid one-time download token.
+- CURRENT (static, user-chosen 2026-10-04): 100% static frontend for Hostinger. Catalog in `frontend/src/data/bundles.js`, Razorpay checkout client-side via checkout.js with public key only (no order_id), paid ZIP bundled at `frontend/public/downloads/promptforge-vault-7f3a9c.zip` (unguessable name), download button shown in success panel after payment handler fires. No API calls at runtime. Creator console removed — bundles added by editing the data file + rebuild. Trade-off: payment not server-verified; ZIP URL is security-through-obscurity.
+- LEGACY (unused, kept in repo): FastAPI + Motor backend in `/app/backend` with server-verified Razorpay orders, HMAC signature verification, one-time download tokens, MongoDB (collections: bundles, orders, downloads). Can be revived if verified payments are needed later.
+- Design: framer-motion + Lenis, acid-green cyberpunk, bento grid, custom bolt logo/favicon.
 
 ## User personas
 - Buyer: wants a prompt bundle fast; pays ₹299 once via Razorpay; expects instant ZIP download.

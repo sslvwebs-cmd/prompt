@@ -1,8 +1,8 @@
 import { motion } from "framer-motion";
-import { Menu, Plus } from "lucide-react";
+import { Menu } from "lucide-react";
 import Logo from "./Logo";
 
-export default function Nav({ onOpenAdmin }) {
+export default function Nav() {
   return (
     <motion.header
       className="nav"
@@ -15,9 +15,6 @@ export default function Nav({ onOpenAdmin }) {
         <div className="nav-links">
           <a href="#vault" data-testid="nav-vault-link">The vault</a>
           <a href="#how" data-testid="nav-how-link">How it works</a>
-          <button className="admin-link" data-testid="open-admin-button" onClick={onOpenAdmin}>
-            Creator console <Plus size={14} />
-          </button>
         </div>
         <button className="menu-button" data-testid="mobile-menu-button" aria-label="Menu">
           <Menu size={19} />

@@ -174,6 +174,10 @@ footer{border-top:1px solid var(--line);max-width:1184px;margin:auto;padding:30p
 .pay-button:disabled{opacity:.65;cursor:wait}
 .pay-button:hover:not(:disabled){background:var(--ink)}
 .secure-note{display:flex;justify-content:center;align-items:center;gap:5px;color:#687168;font-size:10px;margin-top:18px}
+.success-panel{text-align:center}
+.success-panel .success-icon{color:var(--green);margin:4px auto 0;display:block}
+.success-panel p{margin-bottom:26px}
+.success-panel .pay-button{text-decoration:none}
 .admin-modal form{margin-top:12px}
 
 /* ---------- Responsive ---------- */

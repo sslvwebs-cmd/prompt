@@ -1,8 +1,3 @@
-import axios from "axios";
-
-export const API = `${process.env.REACT_APP_BACKEND_URL}/api`;
-export const api = axios.create({ baseURL: API });
-
 export function loadRazorpay() {
   if (window.Razorpay) return Promise.resolve(true);
   return new Promise((resolve) => {

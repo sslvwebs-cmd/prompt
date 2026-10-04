@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Lenis from "lenis";
-import { Toaster, toast } from "sonner";
+import { useEffect } from "react";
+import { Toaster } from "sonner";
 import "@/App.css";
-import { api } from "./lib/api";
+import { BUNDLES } from "./data/bundles";
 import Nav from "./components/Nav";
 import Hero from "./components/Hero";
 import Marquee from "./components/Marquee";
@@ -10,32 +11,9 @@ import VaultGrid from "./components/VaultGrid";
 import HowItWorks from "./components/HowItWorks";
 import Footer from "./components/Footer";
 import CheckoutModal from "./components/CheckoutModal";
-import AdminModal from "./components/AdminModal";
 
 export default function App() {
-  const [bundles, setBundles] = useState([]);
   const [selected, setSelected] = useState(null);
-  const [showAdmin, setShowAdmin] = useState(false);
-
-  useEffect(() => {
-    let cancelled = false;
-    let timer;
-    const load = async (attempt = 0) => {
-      try {
-        const res = await api.get("/bundles");
-        if (!cancelled) setBundles(res.data);
-      } catch {
-        if (cancelled) return;
-        if (attempt < 3) timer = setTimeout(() => load(attempt + 1), 1500);
-        else toast.error("Bundles could not load");
-      }
-    };
-    load();
-    return () => {
-      cancelled = true;
-      clearTimeout(timer);
-    };
-  }, []);
 
   useEffect(() => {
     const lenis = new Lenis({ lerp: 0.09, smoothWheel: true });
@@ -55,21 +33,15 @@ export default function App() {
     <div className="storefront" id="top">
       <div className="noise" aria-hidden="true" />
       <Toaster theme="dark" position="top-center" />
-      <Nav onOpenAdmin={() => setShowAdmin(true)} />
+      <Nav />
       <main>
-        <Hero bundleCount={bundles.length} />
+        <Hero />
         <Marquee />
-        <VaultGrid bundles={bundles} onBuy={setSelected} />
+        <VaultGrid bundles={BUNDLES} onBuy={setSelected} />
         <HowItWorks />
       </main>
       <Footer />
       {selected && <CheckoutModal bundle={selected} onClose={() => setSelected(null)} />}
-      {showAdmin && (
-        <AdminModal
-          onClose={() => setShowAdmin(false)}
-          onAdded={(bundle) => setBundles((items) => [...items, bundle])}
-        />
-      )}
     </div>
   );
 }
