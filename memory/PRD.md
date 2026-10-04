@@ -35,6 +35,7 @@ Build a website to sell prompt bundles online for ₹299 each, with Razorpay pay
 
 ## Backlog
 - P0: Wire fresh Razorpay Test keys, run full payment flow, then finish.
+- P0 (user environment): Live site on Hostinger (prompts.renderedge.life) 404s on /api/bundles — static host has no backend and the frontend was built without REACT_APP_BACKEND_URL ("undefined/api" baked in). User chose: keep Hostinger for frontend, run backend externally. Provided: backend/requirements-external.txt (lean deps), backend/render.yaml (Blueprint), frontend/.env.production (template — user must fill Render URL), /app/DEPLOYMENT.md (Atlas → Render → Hostinger step-by-step). User must execute the guide; preview remains fully working meanwhile.
 - P1: Real Test Mode payment via Razorpay test card, incl. cancellation/failure UX check.
 - P1: Secure creator console properly (user chose to leave it open in preview for now; currently gated by `X-Admin-Key` prompt).
 - P2: Razorpay webhook with signature validation for payment reconciliation.
