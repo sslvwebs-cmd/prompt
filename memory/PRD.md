@@ -4,8 +4,9 @@
 Build a website to sell prompt bundles online for ₹299 each, with Razorpay payments, the ability to add more bundles later, and delivery of the uploaded `bundels.zip` archive to customers after successful payment. Latest explicit requirement: complete Razorpay Standard Web Checkout with Test credentials — backend create-order endpoint, frontend Razorpay modal, backend HMAC-SHA256 signature verification, correct error handling, and no secret on the frontend.
 
 ## Architecture
-- CURRENT (static, user-chosen 2026-10-04): 100% static frontend for Hostinger. Catalog in `frontend/src/data/bundles.js`, Razorpay checkout client-side via checkout.js with public key only (no order_id), paid ZIP bundled at `frontend/public/downloads/promptforge-vault-7f3a9c.zip` (unguessable name), download button shown in success panel after payment handler fires. No API calls at runtime. Creator console removed — bundles added by editing the data file + rebuild. Trade-off: payment not server-verified; ZIP URL is security-through-obscurity.
-- LEGACY (unused, kept in repo): FastAPI + Motor backend in `/app/backend` with server-verified Razorpay orders, HMAC signature verification, one-time download tokens, MongoDB (collections: bundles, orders, downloads). Can be revived if verified payments are needed later.
+- CURRENT (server-verified, restored 2026-10-04 with fresh working Test keys): React static-hostable storefront + FastAPI backend (`/api/orders` = create-order, `/api/payments/verify` = HMAC-SHA256 verify via Razorpay SDK, `/api/download/{token}` = one-time 24h ZIP link, `/api/bundles`, `/api/admin/bundles` with X-Admin-Key). MongoDB via `MONGO_URL`/`DB_NAME` (collections: bundles, orders, downloads). Catalog displayed from `frontend/src/data/bundles.js` (static) while backend validates bundle ids against MongoDB seeds — keep ids in sync.
+- Razorpay keys (WORKING, verified 2026-10-04): in `backend/.env` (id+secret) and `frontend/.env` + `.env.production` (public id only). Old rejected pair replaced.
+- The public static ZIP hole (frontend/public/downloads) was REMOVED when server-verified checkout was restored; downloads now only via one-time token.
 - Design: framer-motion + Lenis, acid-green cyberpunk, bento grid, custom bolt logo/favicon.
 
 ## User personas
