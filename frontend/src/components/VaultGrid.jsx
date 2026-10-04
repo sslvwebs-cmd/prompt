@@ -5,11 +5,11 @@ import Reveal from "./Reveal";
 const FEATURED_IMG =
   "https://images.unsplash.com/photo-1760931969401-9bd6ee902798?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NTYxODl8MHwxfHNlYXJjaHwyfHxBSSUyMGFydCUyMHByb21wdCUyMGZ1dHVyaXN0aWMlMjBuZW9uJTIwY3liZXJwdW5rfGVufDB8fHx8MTc5MTEwNjg3OHww&ixlib=rb-4.1.0&q=85";
 
-function BundleCard({ bundle, index, onBuy }) {
+function BundleCard({ bundle, index, wide, onBuy }) {
   const featured = index === 0;
   return (
     <motion.article
-      className={`bento-card${featured ? " featured" : ""}`}
+      className={`bento-card${featured ? " featured" : ""}${wide ? " wide" : ""}`}
       data-testid={`bundle-card-${bundle.id}`}
       initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -61,9 +61,11 @@ export default function VaultGrid({ bundles, onBuy }) {
         <p>Every bundle is built around a real creative workflow — so you can stop staring at the blank page.</p>
       </Reveal>
       <div className="bento-grid" data-testid="vault-grid">
-        {bundles.map((bundle, index) => (
-          <BundleCard key={bundle.id} bundle={bundle} index={index} onBuy={onBuy} />
-        ))}
+        {bundles.map((bundle, index) => {
+          const lastRowCount = (bundles.length - 2) % 3;
+          const wide = lastRowCount === 1 && index === bundles.length - 1;
+          return <BundleCard key={bundle.id} bundle={bundle} index={index} wide={wide} onBuy={onBuy} />;
+        })}
       </div>
     </section>
   );
