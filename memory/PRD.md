@@ -26,6 +26,7 @@ Build a website to sell prompt bundles online for ₹299 each, with Razorpay pay
 - 2026-10-04: Full bold redesign — kinetic masked-line hero with parallax clipped-frame imagery, editorial marquee, bento vault grid, custom SVG bolt logo + favicon, Lenis momentum scrolling, framer-motion reveals, noise overlay, acid-green art direction. Components split into Nav/Hero/Marquee/VaultGrid/HowItWorks/Footer/CheckoutModal/AdminModal.
 - 2026-10-04: Frontend checkout rewrite — loads checkout.js, creates order first, modal with `REACT_APP_RAZORPAY_KEY_ID`, sends all three signature fields, payment.failed + dismiss handlers, redirects to token download on success.
 - 2026-10-04: `/app/.gitignore` covers `.env` files.
+- 2026-10-04: Fixed "bundles not loading" — root cause was a transient fetch failure during service restarts with no retry; bundle fetch now auto-retries 3 times (1.5s apart) before showing the error toast. Independently verified: 4 cards render, no error toast.
 
 ## Verification status
 - Verified: invalid signature → 400; invalid/used token → 403; unknown bundle → 404; Razorpay auth error → 401 (proven live); page renders at 375/768/1366 px; checkout modal opens.

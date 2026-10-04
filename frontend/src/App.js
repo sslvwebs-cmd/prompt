@@ -18,7 +18,23 @@ export default function App() {
   const [showAdmin, setShowAdmin] = useState(false);
 
   useEffect(() => {
-    api.get("/bundles").then((res) => setBundles(res.data)).catch(() => toast.error("Bundles could not load"));
+    let cancelled = false;
+    let timer;
+    const load = async (attempt = 0) => {
+      try {
+        const res = await api.get("/bundles");
+        if (!cancelled) setBundles(res.data);
+      } catch {
+        if (cancelled) return;
+        if (attempt < 3) timer = setTimeout(() => load(attempt + 1), 1500);
+        else toast.error("Bundles could not load");
+      }
+    };
+    load();
+    return () => {
+      cancelled = true;
+      clearTimeout(timer);
+    };
   }, []);
 
   useEffect(() => {
